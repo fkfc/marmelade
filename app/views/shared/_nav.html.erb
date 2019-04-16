@@ -1,5 +1,32 @@
-<% Category.all.each do |category| %>
-  <li>
-    <%= link_to category.name, posts_path(category: category.name) %>
-  </li>
-<% end %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item active">
+        <a class="nav-link" href="/posts">Home<span class="sr-only"></span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/posts/new">Create<span class="sr-only"></span></a>
+      </li>
+     
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= params[:category] || "Category" %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <% Category.all.each do |category| %>
+            <%= link_to category.name, posts_path(category: category.name), class: "dropdown-item"  %>
+          <% end %>
+        </div>
+      </li>
+
+    </ul>
+    
+  </div>
+</nav>
